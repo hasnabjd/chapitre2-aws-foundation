@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pos-aws-infra"
+version = "0.1.0"
+description = "Infrastructure for Poshub API"
+authors = ["Hasna BOUTEJDIR <hasna.boutejdir@keiken-digital.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.8"
+boto3 = "^1.39.9"
+botocore = "^1.39.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
