@@ -121,6 +121,20 @@ resource "aws_cloudwatch_log_group" "poshub_lambda_log_group" {
   }
 }
 
+# SSM Parameter for API Key
+# This parameter stores the API key securely for the Lambda function
+resource "aws_ssm_parameter" "api_key" {
+  name  = "/pos-h/api-key"
+  type  = "SecureString"
+  value = "your-api-key-here"  # Replace with your actual API key
+
+  tags = {
+    Name        = "poshub-api-key-h"
+    Environment = "development"
+    Project     = "poshub"
+  }
+}
+
 # Attach policies to the Lambda role
 # This connects all the necessary permissions to the role
 
@@ -174,4 +188,14 @@ output "lambda_log_group_arn" {
 output "lambda_log_group_name" {
   description = "Name of the CloudWatch log group for Lambda function"
   value       = aws_cloudwatch_log_group.poshub_lambda_log_group.name
+}
+
+output "ssm_parameter_name" {
+  description = "Name of the SSM parameter for API key"
+  value       = aws_ssm_parameter.api_key.name
+}
+
+output "ssm_parameter_arn" {
+  description = "ARN of the SSM parameter for API key"
+  value       = aws_ssm_parameter.api_key.arn
 }

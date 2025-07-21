@@ -20,8 +20,8 @@ deploy:
 
 # Tester tous les composants
 test:
-	@echo "🧪 Test de l'infrastructure..."
-	poetry run python verify_aws_infra.py
+	@echo "🧪 Test de l'infrastructure complète..."
+	poetry run python verify_aws_setup.py
 
 # Afficher les outputs
 output:

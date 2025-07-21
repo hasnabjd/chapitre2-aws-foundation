@@ -1,28 +1,38 @@
 # PosHub AWS Infrastructure
 
-Ce projet configure l'infrastructure AWS pour un système POS (Point of Sale) en utilisant Terraform.
+Infrastructure AWS pour système POS avec Terraform.
 
-## 🎯 Objectifs d'Apprentissage
-
-### 1. IAM 
-- Création du role de read/write sur S3 bucket
-
-### 2. Lambda Function → poshub-lambda-role
-    ↓
-├── CloudWatch (logs)
-├── S3 (stockage données)
-└── SSM Parameter Store (configurations)
-
-1. **Configuration Terraform** - IAM, S3, CloudWatch Log Group
-2. **Déploiement** - Infrastructure AWS
-3. **Log Group CloudWatch** - `/aws/lambda/poshub-dev-h` (30 jours)
-4. **Tests** - Vérification complète
+## 🚀 Déploiement
 
 
-### 🚀 Commandes
-```bash
-make deploy    # Déployer l'infrastructure
-make test      # Tester tous les composants
-make plan      # Vérifier les changements
-make output    # Voir les outputs
+# Ou avec Makefile
+make deploy
 ```
+
+## 🧪 Tests
+
+```bash
+# Tester l'infrastructure
+make test
+
+# Vérifier les logs CloudWatch
+aws logs filter-log-events --log-group-name "/aws/lambda/poshub-dev-h" --filter-pattern "hello CW"
+```
+
+## 📋 Infrastructure
+
+- **S3** : `poshub-dev-bucket`
+- **IAM Role** : `poshub-lambda-role-h`
+- **CloudWatch** : `/aws/lambda/poshub-dev-h`
+- **SSM** : `/pos-h/api-key`
+
+## 🎯 Commandes
+
+```bash
+make deploy    # Déployer
+make test      # Tester
+make plan      # Planifier
+make output    # Outputs
+```
+
+
